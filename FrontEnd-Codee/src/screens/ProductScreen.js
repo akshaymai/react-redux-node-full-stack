@@ -1,13 +1,25 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {Col,Row,ListGroup,Image, Button} from 'react-bootstrap';
-import Products from '../products';
+// import Products from '../products';
 import Rating from '../components/rating';
 import {Link} from 'react-router-dom'
-
+import axios from 'axios';
 
 const ProductScreen = ({match}) => {
-    let product=Products.find((item)=>item._id === match.params.id)
-    // console.log('redirect',props)
+
+    const [product,setProduct]=useState([])
+    useEffect(()=>{
+
+        const fetchProducts=async ()=>{
+
+            const {data}=await axios.get(`/product/${match.params.id}`)
+
+            setProduct(data)
+       
+           } 
+        fetchProducts();
+    },[])
+    
     return (
         <>
         <Link to="/" className="btn btn-dark my-3">Go Back</Link>

@@ -1,9 +1,30 @@
 import React from 'react';
 import { Col,Row } from 'react-bootstrap';
-import Products from '../products'
+import {useState,useEffect} from 'react'
+import axios from 'axios'
 import Product from '../components/products'
+// import products from '../../../Backend-Code/data/products';
 const HomeScreen = (props) => {
+
+    const [Products,setProducts]=useState([])
+
+    
+
+    useEffect(()=>{
+
+        const fetchProducts=async ()=>{
+
+            const {data}=await axios.get('/product')
+            console.log("akshay",data)
+            setProducts(data)
+       
+           } 
+        fetchProducts();
+    },[])
+
+// console.log('ffffffffff',Products)
     return (
+        
         <>
          
               <h3>List Of Products</h3>
