@@ -6,7 +6,7 @@ const HomeScreen = (props) => {
     return (
         <>
          
-              <h1>List Of Products</h1>
+              <h3>List Of Products</h3>
         <Row>
             
             {Products.map((product)=>{
