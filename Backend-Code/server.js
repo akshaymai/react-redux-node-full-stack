@@ -1,8 +1,10 @@
 const express=require('express')
 const app=express()
 const morgan=require('morgan')
+const dotenv=require('dotenv')
 var cors = require('cors')
 const Products=require('../Backend-Code/data/products')
+dotenv.config()
 
 app.use(express.json())
 app.use(morgan('tiny'))
@@ -21,6 +23,7 @@ app.get('/product/:id',(req,res)=>{
     res.json(product)
 })
 
-app.listen(5000,()=>{
-    console.log('app is running on port 5000')
+const PORT=process.env.PORT || 5000
+app.listen(PORT,()=>{
+    console.log(`app is running on port ${PORT}`)
 })
