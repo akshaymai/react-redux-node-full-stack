@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+var colors = require('colors');
 
 const connectDB= async()=>{
 
@@ -11,11 +12,11 @@ const connectDB= async()=>{
             useUnifiedTopology:true
         })
 
-        console.log(`DB is CONNETED,${result.connection.host}`)
+        console.log(`DB is CONNETED,${result.connection.host}`.green)
     }
     catch (err){
 
-        console.log(`Db is not connected,${err}`)
+        console.log(`Db is not connected,${err.message}`.red.underline)
         process.exit(1)
     }
 

@@ -1,6 +1,8 @@
 const express=require('express')
 const app=express()
 const morgan=require('morgan')
+var colors = require('colors');
+
 const dotenv=require('dotenv')
 const dbConnecion=require('../Backend-Code/config/db')
 // import morgan from 'morgan';
@@ -34,5 +36,5 @@ app.get('/product/:id',(req,res)=>{
 const PORT=process.env.PORT || 5000.
 
 app.listen(PORT,()=>{
-    console.log(`app is running on port ${PORT}`)
+    console.log(`app is running on port ${PORT}`.rainbow)
 })
