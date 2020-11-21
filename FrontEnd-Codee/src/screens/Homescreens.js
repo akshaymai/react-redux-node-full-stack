@@ -5,7 +5,8 @@ import Product from '../components/products'
 // import products from '../../../Backend-Code/data/products';
 import  {useSelector,useDispatch} from 'react-redux'
 import {listofProduct} from '../actions/productAction'
-
+import Loader from '../components/loder';
+import Message from '../components/message'
 const HomeScreen = (props) => {
  
 const dispatch=useDispatch(); 
@@ -38,9 +39,9 @@ dispatch(listofProduct())
          
               <h3>List Of Products</h3>
               {loading ? (
-                  <h1>Loading </h1> 
-              ):error ? (
-              <h1>{error}</h1>
+                  <Loader/>   
+                 ):error ? (
+                 <Message variant={'info'}>{error}</Message>
               ) :(
             <Row>
             {products.map((product)=>{
