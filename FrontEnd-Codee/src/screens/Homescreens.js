@@ -14,7 +14,7 @@ const HomeScreen = (props) => {
 
         const fetchProducts=async ()=>{
 
-            const {data}=await axios.get('/product')
+            const {data}=await axios.get('/products')
             console.log("akshay",data)
             setProducts(data)
        
