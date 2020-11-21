@@ -8,7 +8,7 @@
     "start": "node Backend-Code/server.js",
     "server": "nodemon Backend-Code/server.js",
     "client": "npm  start --prefix FrontEnd-Codee",
-    "dev": "concurrently \"npm run server \" \"npm run client\"",
+    "dev": "concurrently \"npm run client \" \"npm run server\"",
     "data:import": "node Backend-Code/seeders.js",
     "data:destroy": "node Backend-Code/seeders.js -d"
   },
