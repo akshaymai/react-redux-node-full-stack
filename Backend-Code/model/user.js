@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 
 const userSchema=new mongoose.Schema({
 
-    Name:{
+    name:{
         type:String,
         required:true,
         trim:true
@@ -13,7 +13,7 @@ const userSchema=new mongoose.Schema({
         trim:true,
         unique:true
     },
-    passsword:{
+    password:{
         type:String,
         required:true,
         trim:true
@@ -26,6 +26,7 @@ const userSchema=new mongoose.Schema({
 })
 
 
-const User=mongoose.model('User',userSchema,User)
+const User=mongoose.model('User',userSchema)
+
 
 module.exports={User}
