@@ -9,8 +9,8 @@
     "server": "nodemon Backend-Code/server.js",
     "client": "npm  start --prefix FrontEnd-Codee",
     "dev": "concurrently \"npm run server \" \"npm run client\"",
-    "data:import":"node Backend-Code/seeders.js",
-    "data:destroy":"node Backend-Code/seeders.js -d"
+    "data:import": "node Backend-Code/seeders.js",
+    "data:destroy": "node Backend-Code/seeders.js -d"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.10.15",
     "morgan": "^1.10.0"
   },

@@ -23,15 +23,8 @@ app.use(morgan('tiny'))
  
 app.use(cors())
 
-app.get('/product',(req,res)=>{
-res.json(Products)
-})
+app.use('/products',require('./routes/product'))
 
-app.get('/product/:id',(req,res)=>{
-    const product=Products.find((item)=>item._id === req.params.id);
- 
-    res.json(product)
-})
 
 const PORT=process.env.PORT || 5000.
 
