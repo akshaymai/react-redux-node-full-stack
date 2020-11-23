@@ -11,7 +11,7 @@ const HomeScreen = (props) => {
  
 const dispatch=useDispatch(); 
  
- const productList=useSelector((state)=>state.ProductList)
+const productList=useSelector((state)=>state.ProductList)
 const {products,loading,error}=productList
     
 useEffect(()=>{ 
@@ -32,17 +32,12 @@ dispatch(listofProduct())
     //     fetchProducts();
     // },[])
 
-// console.log('ffffffffff',Products)
     return (
         
         <>
          
               <h3>List Of Products</h3>
-              {loading ? (
-                  <Loader/>   
-                 ):error ? (
-                 <Message variant={'info'}>{error}</Message>
-              ) :(
+              {loading ? <Loader/> :error ? <Message variant={'info'}>{error}</Message> :(
             <Row>
             {products.map((product)=>{
             return (
