@@ -9,15 +9,13 @@ import { cartItemReducers } from './reducers/cartItem';
 const reducers=combineReducers({
     ProductList:productListReducres,    
     ProductDetails:productDetails,
-    cart :cartItemReducers,
-   
+    cart :cartItemReducers
 })
 
   
 
 
 const cartItemFromStroge=localStorage.getItem('cartItem') ? JSON.parse(localStorage.getItem('cartItem') ) : [] 
-
 const initialState={
     cart:{cartItem:cartItemFromStroge}
 }

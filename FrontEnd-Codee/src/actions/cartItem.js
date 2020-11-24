@@ -2,11 +2,10 @@ import {ADD_CART_ITEM} from '../constant/cartItemContent'
 import axios from 'axios'
 
 
-export const getCartItem=(id,qty)=>(dispatch,getState)=>{
-
-    const {data}=axios.get(`/products/${id}`)
-
-
+export const getCartItem=(id,qty)=>async (dispatch,getState)=>{
+    
+    const {data}=await axios.get(`/products/${id}`)
+  
     dispatch({
         type:ADD_CART_ITEM,
         payload:{
@@ -18,6 +17,6 @@ export const getCartItem=(id,qty)=>(dispatch,getState)=>{
             qty:qty
         }
     })
-    localStorage.setItem('cartItem',JSON.stringify(getState().cart.getCartItem))
+    localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))
 }
 
