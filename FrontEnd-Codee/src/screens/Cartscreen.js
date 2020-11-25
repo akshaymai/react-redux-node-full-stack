@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {useDispatch,useSelector} from 'react-redux'
-import {getCartItem} from '../actions/cartItem'
+import {getCartItem, removeCartItem} from '../actions/cartItem'
 import {Col,Row,ListGroup,Button,Form, Image,Card} from 'react-bootstrap'
 import Message from '../components/message';
 import {Link} from 'react-router-dom'
@@ -23,8 +23,9 @@ const CartScreen=({match,location,history})=>{
     },[dispatch,productId,qty])
 
     
-  const removeHandler=(id)=>{
-      console.log('deleted product',id)
+  const removeHandler=(id)=>{ 
+      
+       dispatch(removeCartItem(id))
   }
 
   const addtoPayment=()=>{
