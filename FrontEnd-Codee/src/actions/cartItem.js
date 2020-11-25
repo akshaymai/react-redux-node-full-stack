@@ -17,6 +17,8 @@ export const getCartItem=(id,qty)=>async (dispatch,getState)=>{
             qty:qty
         }
     })
+
+    console.log('check cart item ',JSON.stringify(getState().cart.cartItem))
     localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))
 }
 
