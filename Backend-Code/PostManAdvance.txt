@@ -1,0 +1,27 @@
+
+To ADD Url in envermentVaribale>>>>>>>>>>>>
+
+1.click on Manage Enverment in right top button
+
+select Environment Name(FullStack)
+after that Environment variable (URL)
+add some data(http://localhost:5000)
+then click on  update button
+
+
+To see Enverment variable click on Enverment quick look and select particular Environment Name
+
+Now url look like:   {{URL}}/login
+
+
+
+To add Token in enverment >>>>>>>>>>>>>>
+
+ 1.write     pm.environment.set("TOKEN",pm.response.json().token)   in Tests section
+2.click on type in Authoriation section  and select Bearer token
+2.Add Token to {{TOKEN}}
+
+unselect header section
+
+
+
