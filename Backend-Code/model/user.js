@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+const bcrypt=require('bcryptjs')
 const userSchema=new mongoose.Schema({
 
     name:{
@@ -25,6 +25,12 @@ const userSchema=new mongoose.Schema({
     }
 })
 
+userSchema.methods.Comparepassword=async function (userpassword){
+ 
+    return await bcrypt.compare(this.password ,userpassword)
+
+
+}
 
 const User=mongoose.model('User',userSchema)
 

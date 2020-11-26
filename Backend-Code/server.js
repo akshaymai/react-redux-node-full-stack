@@ -20,10 +20,10 @@ app.use(express.json())
 app.use(morgan('tiny'))
 app.use(cors())
 app.use('/products',require('./routes/product'))
+app.use('/user',require('./routes/user'))
 
 
 app.use(notFound)
-
 app.use(errorHandler)
 
 
