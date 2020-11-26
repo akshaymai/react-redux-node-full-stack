@@ -22,14 +22,14 @@ export const getCartItem=(id,qty)=>async (dispatch,getState)=>{
     localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))
 }
 export const removeCartItem=(id)=>async(dispatch,getState)=>{
-console.log('fffffffffffff',id)
+// console.log('fffffffffffff',id)
 dispatch({
     type: ADD_REMOVE_ITEM,
     payload:{
         id
     }
 })
-console.log('local storage',JSON.stringify(getState().cart.cartItem))
+// console.log('local storage',JSON.stringify(getState().cart.cartItem))
 localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))
 
 }
