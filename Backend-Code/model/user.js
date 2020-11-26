@@ -25,11 +25,20 @@ const userSchema=new mongoose.Schema({
     }
 })
 
+
+userSchema.pre('save',async function (next){
+    var user=this;
+   if(user.isModified('password')){
+   user.password=await bcrypt.hash(user.password,8)
+   }
+next()
+
+ })
+
+
 userSchema.methods.Comparepassword=async function (userpassword){
- 
-    return await bcrypt.compare(this.password ,userpassword)
 
-
+    return await bcrypt.compare(userpassword,this.password )
 }
 
 const User=mongoose.model('User',userSchema)
