@@ -37,7 +37,6 @@ if(checkuser){
 
     const newuser=await User.create({...req.body})
 
-    console.log('ff',newuser) 
 return res.json({
     name:newuser.name,
     _id:newuser._id,
@@ -49,5 +48,15 @@ return res.json({
 }
 
 
+}),
+
+
+
+
+userProfile:asyncHandeler((req,res)=>{
+
+res.send(req.user)
+
 })
 }  
+
