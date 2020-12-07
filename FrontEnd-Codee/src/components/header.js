@@ -20,8 +20,6 @@ const Header = (props) =>{
       <LinkContainer to="/signin">
       <Nav.Link ><i className="fa fa-user" ></i> SignIn</Nav.Link>
       </LinkContainer>
-    
-       
     </Nav>
     
   </Navbar.Collapse>

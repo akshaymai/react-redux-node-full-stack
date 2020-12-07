@@ -23,13 +23,13 @@ app.use('/products',require('./routes/product'))
 app.use('/user',require('./routes/user'))
 
 
-app.use(notFound)
+app.use(notFound) 
 app.use(errorHandler)
 
 
 
 
-const PORT=process.env.PORT || 5000.
+const PORT= process.env.PORT ||  5005.
 
 app.listen(PORT,()=>{
     console.log(`app is running on port ${PORT}`.rainbow)

@@ -11,8 +11,8 @@ export const listofProduct=()=>async (dispatch)=>{
         dispatch({type:PRODUCT_LIST_SUCCESS,payload:data})
     } catch (error) {
         dispatch({type:PRODUCT_LIST_FAILED,payload:
-        error.response && error.response.data.message
-        ? error.response.data.message : error.message
+        error.response && error.response.data.message 
+        ? error.response.data.message : error.message 
         })
     }
 
