@@ -1,5 +1,6 @@
 const {User} =require('../model/user')
 const asyncHandeler=require('express-async-handler')
+const bcrypt=require('bcryptjs')
 const  {genarateToken}=require('../utils/genarateAutthtoken')
 module.exports={
 
@@ -57,6 +58,38 @@ userProfile:asyncHandeler((req,res)=>{
 
 res.send(req.user)
 
+}),
+
+
+updateProfile:asyncHandeler(async (req,res)=>{
+
+    const update=Object.keys(req.body)
+  const allowupdate=['name','email','password']
+const checkupdate=update.every((updates)=> allowupdate.includes(updates))
+if(!checkupdate){
+    return res.status(404).send('please enter valide field')
+}
+
+if(req.body.password){
+req.body.password=bcrypt.hashSync(req.body.password,8);
+}
+ 
+try {
+
+    const user=await User.findByIdAndUpdate(req.user._id,req.body,{new:true,runValidators:true})
+
+    if(!user){
+        return res.status(404).send()
+    }
+    else{
+        res.send(user)
+    }
+} catch (error) {
+
+    res.status(401)
+    throw new Error('Update Failed')
+}
+   
 })
 }  
 
