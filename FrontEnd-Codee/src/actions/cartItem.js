@@ -1,4 +1,4 @@
-import {ADD_CART_ITEM,ADD_REMOVE_ITEM, ADD_SHIPPING_ADDRESS} from '../constant/cartItemContent'
+import {ADD_CART_ITEM,ADD_PAYMENT_METHOD,ADD_REMOVE_ITEM, ADD_SHIPPING_ADDRESS} from '../constant/cartItemContent'
 import axios from 'axios'
 
 
@@ -34,7 +34,7 @@ localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))
 }
 
 export const addShippingaddress=(data)=>async(dispatch)=>{
-  console.log('shippppppppp',data)
+ 
     dispatch({
         type: ADD_SHIPPING_ADDRESS,
         payload: data
@@ -43,3 +43,18 @@ export const addShippingaddress=(data)=>async(dispatch)=>{
     localStorage.setItem('shippingAddress',JSON.stringify(data))
     
     }
+
+
+
+
+
+    export const addpaymentMethod=(data)=>async(dispatch)=>{
+    
+          dispatch({
+              type: ADD_PAYMENT_METHOD,
+              payload: data
+          })
+       
+          localStorage.setItem('paymentmethod',JSON.stringify(data))
+          
+          }
