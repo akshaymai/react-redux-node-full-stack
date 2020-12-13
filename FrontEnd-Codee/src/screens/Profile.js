@@ -1,61 +1,69 @@
 import React,{useEffect,useState} from 'react'
-import FromContainer from '../components/fromContainer';
 import {Form,Button, Col,Row} from 'react-bootstrap'
-import { Link } from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
-import {userRegisterrequest} from '../actions/userInfo';
+import {userDetailsRequest,userProfileUpdate} from '../actions/userInfo';
 import Message from '../components/message'
 import Loader from '../components/loder';
+import { USER_UPDATE_PROFILE_RESET } from '../constant/userInfo'
+
    
-const Register=({location,history})=>{
+const Profile=({location,history})=>{
   const [name,setName]=useState("")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const [rpwd,setRpwd]=useState("")
   const [message,setMessage]=useState(null)
-  const [successMsg,setSuccessMsg]=useState(false)
+  const dispatch=useDispatch()
 
-   const dispatch=useDispatch()
-   const userInformation=useSelector((state)=>state.userRegisterreducer)
-   
-   const {loading,userInfo,errorInfo}=userInformation
-   
-   const redirect=location.search ? location.search.split('=')[1] :'/';
-    
-  
-   useEffect(()=>{
 
-    if(userInfo){
-      setSuccessMsg(userInfo.message)
-      setTimeout(()=>{
-        
-        history.push(redirect)
-      },2000)
+  const userDetails=useSelector((state)=>state.userDetaisr_reducer)
+  const {loading,user,errorInfo}=userDetails;
+     
+  const userLogin=useSelector((state)=>state.userLoginreducer)
+  const {userInfo}=userLogin;
  
+
+  const user_update=useSelector((state)=>state.userProfileUpsateReducer)
+  const {success}=user_update;
+    
+    
+  useEffect(()=>{
+
+    if(!userInfo){
+     history.push('/signin')
+    }else{
+
+        if(!user || !user.name || success){
+          dispatch({ type: USER_UPDATE_PROFILE_RESET })
+            dispatch(userDetailsRequest('getprofile'))
+       
+        }else{
+            setName(user.name)
+            setEmail(user.email)
+        }
     }
 
-   },[userInfo,history,redirect,successMsg])
+   },[success,history,user,userInfo,dispatch])
 
 const onSubmitHandler=(e)=>{
-  e.preventDefault();
+ 
+    e.preventDefault();
+
   if(password !== rpwd){
       setMessage('password not match')
   }else{
-  dispatch(userRegisterrequest(name,email,password))   
-  }
+  dispatch(userProfileUpdate({id:user._id,name,email,password}))   
+  } 
 }
-
-
+ 
     return(
 
-     
-        <FromContainer>
-  <h1 className="py-3">RegisterPage</h1>
+      <Row>
+
+          <Col md={3}>
+          <h2 className="py-3">Update Profile</h2>
   {errorInfo && <Message variant='danger'>{errorInfo}</Message> }
-  {successMsg ? <Message variant='info'>{successMsg}</Message>  : null}
-
-  
-
+  {success  && <Message variant='success'>'Update Successfully'</Message>}
   {message && <Message variant='danger'>{message}</Message> }
       {loading && <Loader/>}
 <Form onSubmit={onSubmitHandler}>
@@ -80,18 +88,16 @@ const onSubmitHandler=(e)=>{
     <Form.Control type="password" placeholder="Confrom Password"  value={rpwd} onChange={(e)=>setRpwd(e.target.value)}/>
   </Form.Group>
   <Button variant="primary" type="submit">
-    Submit
+    Update
   </Button>
 </Form>
-
-   <Row className="py-3"> 
-    <Col>
-     Alreday Register? <Link to={'/signin'}>Login here</Link>
-    </Col>
-   </Row>
-        </FromContainer>
+          </Col>
+          <Col md={6}>
+              <h2> Order Page</h2>
+          </Col>
+      </Row>
     )
 
 }
  
-export default Register;
+export default Profile ;

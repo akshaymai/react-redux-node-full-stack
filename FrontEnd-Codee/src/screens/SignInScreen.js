@@ -11,18 +11,25 @@ const SignIn=({location,history})=>{
       
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
-
+  const [successMsg,setSuccessMsg]=useState(false)
    const dispatch=useDispatch()
    const userInformation=useSelector((state)=>state.userLoginreducer)
    
    const {loading,userInfo,errorInfo}=userInformation
+
    
    const redirect=location.search ? location.search.split('=')[1] :'/';
     
    useEffect(()=>{
 
     if(userInfo){
-     history.push(redirect)
+      setSuccessMsg(userInfo.message)
+
+      setTimeout(()=>{
+         
+        history.push(redirect)
+      },2000)
+      
     }
 
    },[userInfo,history,redirect])
@@ -32,12 +39,15 @@ const onSubmitHandler=(e)=>{
   dispatch(userLoginrequest(email,password))
 }
 
+
+
     return(
 
      
         <FromContainer>
   <h1 className="py-3">Login Page</h1>
   {errorInfo && <Message variant='danger'>{errorInfo}</Message> }
+    {successMsg ? <Message variant='info'>{successMsg}</Message> : null}
       {loading && <Loader/>}
 <Form onSubmit={onSubmitHandler}>
   <Form.Group controlId="formBasicEmail">
