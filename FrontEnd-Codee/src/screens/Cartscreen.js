@@ -5,18 +5,25 @@ import {Col,Row,ListGroup,Button,Form, Image,Card} from 'react-bootstrap'
 import Message from '../components/message';
 import {Link} from 'react-router-dom'
 const CartScreen=({match,location,history})=>{
+     
+  const userLogin=useSelector((state)=>state.userLoginreducer)
+  const {userInfo}=userLogin;
 
      const dispatch=useDispatch() 
     const productId=match.params.id
     const qty=location.search ? Number(location.search.split('=')[1]) : 1;
  
     const cart=useSelector((state)=>state.cart)
-
+  
 
     const {cartItem} =cart
 
     useEffect(()=>{
 
+      if(!userInfo){
+        history.push('/signin')
+       }
+     
    if(productId){
        dispatch(getCartItem(productId,qty))
    }
@@ -29,7 +36,7 @@ const CartScreen=({match,location,history})=>{
   }
 
   const addtoPayment=()=>{
-    history.push('/login?redirect=shipping')
+    history.push('/shipping')
   }
 
     return(

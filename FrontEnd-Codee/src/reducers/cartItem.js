@@ -1,7 +1,7 @@
-import {ADD_CART_ITEM,ADD_REMOVE_ITEM} from '../constant/cartItemContent';
+import {ADD_SHIPPING_ADDRESS,ADD_CART_ITEM,ADD_REMOVE_ITEM} from '../constant/cartItemContent';
 
 
-export const cartItemReducers=(state={cartItem:[]},action)=>{
+export const cartItemReducers=(state={cartItem:[],address:{}},action)=>{
 
 switch(action.type){
 
@@ -25,6 +25,16 @@ return {
   ...state,
   cartItem:state.cartItem.filter((item)=>item.product !== action.payload.id)
 }
+
+
+case ADD_SHIPPING_ADDRESS:
+
+return {
+  ...state,
+  shippingAddress:action.payload
+}
+
+
 default :
 return state
 }

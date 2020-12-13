@@ -20,12 +20,15 @@ const reducers=combineReducers({
   
 
 
-const cartItemFromStroge=localStorage.getItem('cartItem') ? JSON.parse(localStorage.getItem('cartItem') ) : [] 
+const cartItemFromStroge=localStorage.getItem('cartItem') ? JSON.parse(localStorage.getItem('cartItem') ) : [];
+const shippingAddress=localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {};
 const userinfo=localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) :null
 
+
+
 const initialState={
-    cart:{cartItem:cartItemFromStroge},
-    userLoginDetails:userinfo
+    cart:{cartItem:cartItemFromStroge,shippingAddress:shippingAddress},
+    userLoginDetails:userinfo,
 }
 
 const middleware=[thunk]
