@@ -24,7 +24,7 @@ if(!shippingAddress){
 const PaymentSubmit=(e)=>{
     e.preventDefault()
     dispatch(addpaymentMethod(payment))
-    history.push('/order')
+    history.push('/placeorder')
 }
 
 return(
