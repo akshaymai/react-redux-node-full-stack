@@ -1,19 +1,38 @@
 
-import React,{useState} from 'react'
+import React,{useEffect} from 'react'
 import {Row,Col,Card,ListGroup,Image,Button} from 'react-bootstrap'
 import {useDispatch,useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps'
 import Message from '../components/message'
- 
+import {createOrder} from '../actions/order'
 
 
 
 
-const PlaceOrder=({step1,step2,step3,step4})=>{
+const PlaceOrder=({history})=>{
 
     const cart=useSelector((state)=>state.cart)
-    const {shippingAddress,paymentMethod} =cart
+    const {paymentMethod,cartItem,taxPrice,shippingAddress} =cart
+
+
+
+    const dispatch=useDispatch()
+
+    const orderCreate = useSelector((state) => state.orderCreate)
+    const { order, success, error } = orderCreate
+  
+    useEffect(() => {
+      if (success) {
+        history.push(`/order/${order._id}`)
+      }
+      // eslint-disable-next-line
+    }, [history, success])
+
+
+
+
+
 
  //   Calculate prices
  const addDecimals = (num) => {
@@ -33,7 +52,16 @@ const PlaceOrder=({step1,step2,step3,step4})=>{
 
 
 const placeOrderHandler=()=>{
-    console.log('ergtfh')
+   dispatch(createOrder({
+
+    orderItems:cartItem,
+    shippingAddress,
+    paymentMethod,
+    itemsPrice:cart.itemsPrice,
+    taxPrice,
+    shippingPrice:cart.shippingPrice,
+    totalPrice:cart.totalPrice,
+   }))
 }
 
 
@@ -119,7 +147,7 @@ return(
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                {/* {error && <Message variant='danger'>{error}</Message>} */}
+                {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button

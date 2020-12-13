@@ -10,7 +10,7 @@ const Shipping=({history})=>{
     const {shippingAddress} =cart
 const [address,setAddress]=useState(shippingAddress.address)
 const [city,setCity]=useState(shippingAddress.city)
-const [postelcode,setPostel]=useState(shippingAddress.postelcode)
+const [postalCode,setPostel]=useState(shippingAddress.postalCode)
 const [country,setCountry]=useState(shippingAddress.country)
 
 const dispatch=useDispatch()
@@ -19,7 +19,7 @@ const dispatch=useDispatch()
 
 const ShippingSubmit=(e)=>{
     e.preventDefault()
-    dispatch(addShippingaddress({address,city,postelcode,country}))
+    dispatch(addShippingaddress({address,city,postalCode,country}))
     history.push('/payment')
 }
 
@@ -43,7 +43,7 @@ return(
 
  <Form.Group>
     <Form.Label>Postel Code</Form.Label>
-    <Form.Control type="text" placeholder="Enter Pincode" required value={postelcode} onChange={(e)=>setPostel(e.target.value)} />
+    <Form.Control type="text" placeholder="Enter Pincode" required value={postalCode} onChange={(e)=>setPostel(e.target.value)} />
 </Form.Group>
   <Form.Group>
     <Form.Label>Country</Form.Label>

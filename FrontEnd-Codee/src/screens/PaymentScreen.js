@@ -12,7 +12,7 @@ const PaymentScreen=({history})=>{
     const cart=useSelector((state)=>state.cart)
     const {shippingAddress} =cart
 
-const [payment,setPaymentMethod]=useState('paypal')
+const [payment,setPaymentMethod]=useState(null)
 
 const dispatch=useDispatch()
 
@@ -42,8 +42,8 @@ return(
     id="paypal"
     name="paymentMethod"
     value="Paypal"
-    checked
-    onChange={(e)=>setPaymentMethod(e.target.value)}
+    
+    onChange={(e)=>   setPaymentMethod(e.target.value)}
     >
     </Form.Check>
   

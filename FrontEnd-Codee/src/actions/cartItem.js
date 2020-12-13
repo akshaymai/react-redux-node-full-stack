@@ -34,7 +34,7 @@ localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))
 }
 
 export const addShippingaddress=(data)=>async(dispatch)=>{
- 
+
     dispatch({
         type: ADD_SHIPPING_ADDRESS,
         payload: data
