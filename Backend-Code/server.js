@@ -21,6 +21,8 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use('/products',require('./routes/product'))
 app.use('/user',require('./routes/user'))
+app.use('/order',require('./routes/order'))
+
 
 
 app.use(notFound) 
