@@ -22,6 +22,7 @@ app.use(cors())
 app.use('/products',require('./routes/product'))
 app.use('/user',require('./routes/user'))
 app.use('/order',require('./routes/order'))
+app.get('/payment/paypal/config',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
 
 
 
