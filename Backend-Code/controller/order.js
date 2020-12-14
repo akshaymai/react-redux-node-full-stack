@@ -36,7 +36,7 @@ module.exports={
         res.status(201).json(createdOrder)
 
    }
-   })
+   }),
 
 
 
@@ -53,13 +53,15 @@ module.exports={
 // }),
 
 
-// getProductbyId:  asyncHandeler(async(req,res)=>{
-//     const product=await Product.findById(req.params.id)
-//     if(product){
-//         res.json(product)
-//     }else{
-//         res.status(404)
-//         throw new Error('product not found this id ')
-//     }
-//     })
+getOrderById:  asyncHandeler(async(req,res)=>{
+  console.log('gfhjkilkhgfcvxcvhj',req.params.id)
+    const order=await Order.findById(req.params.id).populate('user','name email')
+    console.log('hhhhhhhhhhhhhhhhhh',order)
+    if(order){
+        res.json(order)
+    }else{
+        res.status(404)
+        throw new Error('Order found this id ')
+    }
+    })
 }
