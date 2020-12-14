@@ -41,7 +41,7 @@ const OrderScreen = ({ match, history }) => {
  dispatch(orderDetailsaction(orderId))
      
    
-  }, [])
+  }, [dispatch,orderId])
 
  
   return loading ? (
