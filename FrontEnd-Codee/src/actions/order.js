@@ -50,7 +50,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
 
 
-export const orderDetails = (id) => async (dispatch, getState) => {
+export const orderDetailsaction = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ORDER_DETAILS_REQUEST,
