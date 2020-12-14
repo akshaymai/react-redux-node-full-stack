@@ -12,7 +12,7 @@ const PaymentScreen=({history})=>{
     const cart=useSelector((state)=>state.cart)
     const {shippingAddress} =cart
 
-const [payment,setPaymentMethod]=useState(null)
+const [payment,setPaymentMethod]=useState('paypal')
 
 const dispatch=useDispatch()
 
@@ -42,12 +42,13 @@ return(
     id="paypal"
     name="paymentMethod"
     value="Paypal"
+    checked
     
     onChange={(e)=>   setPaymentMethod(e.target.value)}
     >
     </Form.Check>
   
-    <Form.Check 
+    {/* <Form.Check 
     type="radio"
     label="strip"
     id="strip"
@@ -56,13 +57,13 @@ return(
     
     onChange={(e)=>setPaymentMethod(e.target.value)}
     >
-    </Form.Check>
+    </Form.Check> */}
   
   
   </Col>
   </Form.Group>
   <Button variant="primary" className="my-3" type="submit">
-    Payment
+   Continue
   </Button>
  </Form>
 </FromContainer>
