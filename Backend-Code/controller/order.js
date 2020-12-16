@@ -65,6 +65,18 @@ getOrderById:  asyncHandeler(async(req,res)=>{
     }
     }),
 
+getMyPersonalOrder:  asyncHandeler(async(req,res)=>{
+ 
+        const order=await Order.find({user:req.user._id})
+      
+        if(order){
+            res.json(order)
+        }else{
+            res.status(404)
+            throw new Error('This person not purchase any order')
+        }
+        }),
+    
 
  
 updateOrdertoPadid:  asyncHandeler(async(req,res)=>{
