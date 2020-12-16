@@ -7,15 +7,21 @@ import CheckoutSteps from '../components/checkoutSteps'
 import Message from '../components/message'
 import {createOrder} from '../actions/order'
 
-
-
+import {USER_DETAILS_RESET} from '../constant/userInfo'
+import {ORDER_CREATE_RESET} from '../constant/order'
 
 const PlaceOrder=({history})=>{
 
     const cart=useSelector((state)=>state.cart)
-    const {paymentMethod,cartItem,taxPrice,shippingAddress} =cart
+    // const {paymentMethod,cartItem,taxPrice,shippingAddress} =cart
 
 
+
+    if (!cart.shippingAddress.address) {
+      history.push('/shipping')
+    } else if (!cart.paymentMethod) {
+      history.push('/payment')
+    }
 
     const dispatch=useDispatch()
 
@@ -25,6 +31,8 @@ const PlaceOrder=({history})=>{
     useEffect(() => {
       if (success) {
         history.push(`/order/${order._id}`)
+        dispatch({ type: USER_DETAILS_RESET })
+        dispatch({ type: ORDER_CREATE_RESET })
       }
       // eslint-disable-next-line
     }, [history, success])
@@ -54,11 +62,11 @@ const PlaceOrder=({history})=>{
 const placeOrderHandler=()=>{
    dispatch(createOrder({
 
-    orderItems:cartItem,
-    shippingAddress,
-    paymentMethod,
+    orderItems:cart.cartItem,
+    shippingAddress:cart.shippingAddress,
+    paymentMethod:cart.paymentMethod,
     itemsPrice:cart.itemsPrice,
-    taxPrice,
+    taxPrice:cart.taxPrice,
     shippingPrice:cart.shippingPrice,
     totalPrice:cart.totalPrice,
    }))
@@ -75,14 +83,14 @@ return(
                             <h2>Shipping</h2>
                             <p> 
                             <strong>Address:  </strong>
-                            {shippingAddress.address},{shippingAddress.city},{shippingAddress.postelcode},{shippingAddress.country}                            
+                            {cart.shippingAddress.address},{cart.shippingAddress.city},{cart.shippingAddress.postelcode},{cart.shippingAddress.country}                            
                             </p>                      
                      </ListGroup.Item>
                      <ListGroup.Item >
                             <h2>Payment Method</h2>
                             <p> 
                             <strong>Method  </strong>
-                              {paymentMethod}     
+                              {cart.paymentMethod}     
                             </p>                      
                      </ListGroup.Item>
                      <ListGroup.Item >

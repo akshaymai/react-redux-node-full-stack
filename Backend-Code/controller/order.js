@@ -70,11 +70,11 @@ getOrderById:  asyncHandeler(async(req,res)=>{
 updateOrdertoPadid:  asyncHandeler(async(req,res)=>{
  
     const order=await Order.findById(req.params.id)
- 
+     console.log('sdfgtdsdfgh',order)
     if(order){
       
       order.isPaid=true;
-      order.paidAt=Date.now().toLocaleString()
+      order.paidAt=new Date().toDateString()
       order.paymentResult={
 
         id: req.body.id,
@@ -83,7 +83,7 @@ updateOrdertoPadid:  asyncHandeler(async(req,res)=>{
         email_address: req.body.email_address
       }
 
-      const updatedOrder=await Order.save()
+      const updatedOrder=await order.save()
       res.send(updatedOrder)
     }else{
         res.status(404)

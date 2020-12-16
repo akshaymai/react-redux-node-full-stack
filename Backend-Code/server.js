@@ -22,15 +22,17 @@ app.use(cors())
 app.use('/products',require('./routes/product'))
 app.use('/user',require('./routes/user'))
 app.use('/order',require('./routes/order'))
-app.get('/payment/paypal/config',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
+
+
+app.get('/api/paypal/config',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
 
 
 
-app.use(notFound) 
+app.use(notFound)    
 app.use(errorHandler)
 
 
-
+    
 
 const PORT= process.env.PORT ||  5005.
 

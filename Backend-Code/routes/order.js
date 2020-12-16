@@ -5,8 +5,7 @@ const { auth } =require ('../middleware/authMiddleware')
 
 router.route('/create/order').post(auth, creatOrder);
 router.route('/get/order/:id').get(auth, getOrderById);
-router.route('/update/order/:id/paid').get(auth, updateOrdertoPadid);
-
+router.route('/update/order/:id/paid').put(auth, updateOrdertoPadid);
 
 
 module.exports=router
